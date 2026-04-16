@@ -1,0 +1,306 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+    background: #fdfdfd;
+    min-height: 100vh;
+    padding: 20px;
+    color: #1f2937;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 背景流动光晕动画 */
+.bg-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    filter: blur(60px); /* 稍微减弱模糊，使形状感更强 */
+    opacity: 0.6; /* 稍微增加透明度 */
+}
+
+.blob {
+    position: absolute;
+    width: 50vw;
+    height: 50vw;
+    border-radius: 50%;
+    mix-blend-mode: multiply; /* 增加色彩叠加效果 */
+}
+
+.blob:nth-child(1) {
+    background: #e0e7ff;
+    top: -10%;
+    left: -10%;
+    animation: move1 25s infinite alternate ease-in-out;
+}
+
+.blob:nth-child(2) {
+    background: #fae8ff;
+    bottom: -10%;
+    right: -10%;
+    animation: move2 30s infinite alternate ease-in-out;
+}
+
+.blob:nth-child(3) {
+    background: #fef3c7;
+    top: 40%;
+    left: 30%;
+    animation: move3 35s infinite alternate ease-in-out;
+}
+
+@keyframes move1 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30%, 20%) scale(1.3); }
+}
+
+@keyframes move2 {
+    0% { transform: translate(0, 0) scale(1.1); }
+    100% { transform: translate(-30%, -20%) scale(1.4); }
+}
+
+@keyframes move3 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-20%, 30%) scale(1.2); }
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    text-align: center;
+    margin: 48px 0 40px;
+    animation: slideUp 0.6s ease-out forwards;
+}
+
+.avatar {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 18px;
+    border-radius: 50%; /* 改为圆形 */
+    display: grid;
+    place-items: center;
+    background: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.username {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+}
+
+.bio {
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+
+.refresh-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    background: rgba(255, 255, 255, 0.8);
+    color: #4b5563;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
+}
+
+.refresh-btn:hover {
+    background: #fff;
+    border-color: #d1d5db;
+    color: #111827;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.refresh-btn:active {
+    transform: scale(0.95);
+}
+
+.refresh-btn svg {
+    transition: transform 0.4s ease;
+}
+
+.refresh-btn.loading svg {
+    animation: spin 1s linear infinite;
+}
+
+.category-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 40px 0 16px;
+    text-align: center;
+    position: relative;
+    animation: slideUp 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.category-title::before, .category-title::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 1px;
+    background: #e5e7eb;
+}
+
+.category-title::before { left: 15%; }
+.category-title::after { right: 15%; }
+
+.links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+}
+
+.link-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #374151;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    -webkit-tap-highlight-color: transparent;
+    animation: slideUp 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.link-card:active {
+    transform: scale(0.96);
+}
+
+.link-card:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 1);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+}
+
+.link-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: #fff;
+    color: #6366f1;
+    display: grid;
+    place-items: center;
+    margin-right: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.link-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.link-text {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 0;
+}
+
+.link-name {
+    font-size: 15.5px;
+    font-weight: 600;
+    color: #1f2937;
+    word-break: break-word;
+}
+
+.empty {
+    text-align: center;
+    color: #9ca3af;
+    padding: 60px 0;
+    font-size: 14px;
+}
+
+/* 状态提示样式 */
+.status {
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.status.success {
+    background: #ecfdf5;
+    color: #059669;
+    border: 1px solid #d1fae5;
+}
+
+.status.error {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fee2e2;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>li - 导航</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 背景动画元素 -->
+    <div class="bg-blobs">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="avatar">
+                <img src="assets/avatar.jpg" alt="MoreFree Logo" id="avatarImg">
+            </div>
+            <div class="username">litao</div>
+            <div class="bio">导航合集</div>
+            <button id="refreshBtn" class="refresh-btn" title="刷新数据">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                同步数据
+            </button>
+        </div>
+
+        <div id="status" style="display: none;"></div>
+
+        <div id="navContent">
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
